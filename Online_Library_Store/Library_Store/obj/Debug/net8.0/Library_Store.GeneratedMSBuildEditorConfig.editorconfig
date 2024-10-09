@@ -18,6 +18,30 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\ZeeZo\Desktop\My Projects\Online_Library_Store\Online_Library_Store\Library_Store
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/ZeeZo/Desktop/My Projects/Online_Library_Store/Online_Library_Store/Library_Store/Views/Book/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va1xBZGQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ZeeZo/Desktop/My Projects/Online_Library_Store/Online_Library_Store/Library_Store/Views/Book/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ZeeZo/Desktop/My Projects/Online_Library_Store/Online_Library_Store/Library_Store/Views/Book/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ZeeZo/Desktop/My Projects/Online_Library_Store/Online_Library_Store/Library_Store/Views/Book/HomePage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va1xIb21lUGFnZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ZeeZo/Desktop/My Projects/Online_Library_Store/Online_Library_Store/Library_Store/Views/Book/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ZeeZo/Desktop/My Projects/Online_Library_Store/Online_Library_Store/Library_Store/Views/Book/ShowDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va1xTaG93RGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/ZeeZo/Desktop/My Projects/Online_Library_Store/Online_Library_Store/Library_Store/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -32,6 +56,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/ZeeZo/Desktop/My Projects/Online_Library_Store/Online_Library_Store/Library_Store/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ZeeZo/Desktop/My Projects/Online_Library_Store/Online_Library_Store/Library_Store/Views/User/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ZeeZo/Desktop/My Projects/Online_Library_Store/Online_Library_Store/Library_Store/Views/User/Signup.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxTaWdudXAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ZeeZo/Desktop/My Projects/Online_Library_Store/Online_Library_Store/Library_Store/Views/_ViewImports.cshtml]

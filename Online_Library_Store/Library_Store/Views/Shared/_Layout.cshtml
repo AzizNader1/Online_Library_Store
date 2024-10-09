@@ -7,23 +7,80 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Library_Store.styles.css" asp-append-version="true" />
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        .navbar {
+            background-color: #1f1f1f;
+        }
+
+        .navbar-brand, .nav-link {
+            color: #e0e0e0;
+        }
+
+            .nav-link:hover {
+                color: #bb86fc;
+                text-shadow: 0px 0px 5px #bb86fc;
+            }
+
+        .navbar-toggler-icon {
+            filter: invert(1);
+        }
+
+        .footer {
+            background-color: #1f1f1f;
+            color: #e0e0e0;
+        }
+
+        a {
+            color: #bb86fc;
+        }
+
+            a:hover {
+                color: #3700b3;
+                text-decoration: none;
+            }
+
+        .border-bottom, .border-top {
+            border-color: #333;
+        }
+
+        .box-shadow {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+        }
+
+        .navbar-collapse {
+            justify-content: flex-start;
+        }
+
+        .container-fluid {
+            max-width: 1200px;
+        }
+
+        main {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Library_Store</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Book" asp-action="Index">Library_Store</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <div class="navbar-collapse collapse d-sm-inline-flex">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link" asp-area="" asp-controller="Book" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link" asp-area="" asp-controller="User" asp-action="Login">Login</a>
                         </li>
                     </ul>
                 </div>

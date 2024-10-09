@@ -1,0 +1,185 @@
+﻿@model AddUserDto;
+
+<style>
+    body {
+        background-color: #121212;
+        color: #e0e0e0; 
+        font-family: 'Arial', sans-serif;
+    }
+
+    #passwordInstructions {
+        color: #b0bec5;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    .invalid {
+        color: #ff5252; 
+    }
+
+    .signup {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #263238;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        border-radius: 8px;
+    }
+
+        .signup h3 {
+            text-align: center;
+            color: #ffffff; 
+        }
+
+        .signup form {
+            margin-top: 20px;
+        }
+
+        .signup label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .signup input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #424242; 
+            color: #ffffff;
+        }
+
+        .signup .btn-primary {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #009688;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+            .signup .btn-primary:hover {
+                background-color: #00796b; 
+            }
+
+        .signup a.btn-primary {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            background-color: #546e7a;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+            .signup a.btn-primary:hover {
+                background-color: #455a64; 
+            }
+
+    .alert {
+        margin-top: 10px;
+        padding: 15px;
+        border-radius: 5px;
+        position: relative;
+        animation: fadeIn 0.5s, fadeOut 0.5s 2.5s; /* Optional for fade effect */
+    }
+
+    .alert-success {
+        background-color: #263238;
+        color: #ffffff;
+    }
+
+    .alert-danger {
+        background-color: #f44336; /* Red background for error messages */
+        color: #ffffff;
+    }
+
+    .closebtn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+</style>
+@if (TempData["EmailErrorMessage"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["EmailErrorMessage"]
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    </div>
+}
+    <div class="signup">
+        <h3>Welcome to our system</h3>
+        <form asp-action="Signup" method="post" id="SignupForm" enctype="multipart/form-data">
+            <div>
+                <label asp-for="UserName"></label>
+                <input asp-for="UserName" />
+                <span asp-validation-for="UserName"></span>
+            </div>
+            <div>
+                <label asp-for="UserEmail"></label>
+                <input asp-for="UserEmail" />
+                <span asp-validation-for="UserEmail"></span>
+            </div>
+            <div>
+                <label asp-for="UserPassword"></label>
+                <input asp-for="UserPassword" id="password" />
+                <p id="passwordInstructions"></p>
+                <span asp-validation-for="UserPassword"></span>
+            </div>
+            <div>
+                <label>User Image</label>
+                <input type="file" name="image" id="image" />
+                <span></span>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Signup" asp-action="Signup" />
+            <a asp-action="Login" class="btn btn-primary">Cancel</a>
+        </form>
+    </div>
+
+
+
+<script>
+    // Automatically hide alerts after 3 seconds
+    document.querySelectorAll('.alert').forEach(alert => {
+        setTimeout(() => {
+            alert.style.display = 'none';
+        }, 3000);
+    });
+    document.getElementById("password").addEventListener("keydown", function () {
+        const instructions = document.getElementById('passwordInstructions');
+        instructions.innerHTML = `
+                <div>Must be at least 8 characters</div>
+                <div>Must contain at least 2 numbers</div>
+                <div>Must contain at least 3 symbols</div>
+            `;
+    });
+
+    document.getElementById("password").addEventListener("input", validatePassword);
+
+    function validatePassword() {
+        const password = document.getElementById('password').value;
+        const instructions = document.getElementById('passwordInstructions').getElementsByTagName('div');
+
+        const hasMinLength = password.length >= 8;
+        const hasMinNumbers = (password.match(/\d/g) || []).length >= 2;
+        const hasMinSymbols = (password.match(/[^A-Za-z0-9]/g) || []).length >= 3;
+
+        instructions[0].className = hasMinLength ? '' : 'invalid';
+        instructions[1].className = hasMinNumbers ? '' : 'invalid';
+        instructions[2].className = hasMinSymbols ? '' : 'invalid';
+    }
+</script>

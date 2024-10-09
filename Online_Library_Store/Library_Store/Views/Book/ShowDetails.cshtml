@@ -1,0 +1,101 @@
+﻿@model Book;
+
+<style>
+    body {
+        background-color: #121212;
+        color: #e0e0e0;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .card {
+        max-width: 200px;
+        margin: 15px;
+        padding: 10px;
+        border: 1px solid #333;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+
+        .card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+    .card-body {
+        text-align: center;
+    }
+
+    .options {
+        margin-top: 10px;
+    }
+
+    .details-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #333;
+        border-radius: 8px;
+        background-color: #1f1f1f;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .detail-item {
+        margin-bottom: 15px;
+    }
+
+    .textlabel {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+
+    .place {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #333;
+        border-radius: 4px;
+        background-color: #263238;
+        color: #eceff1;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+        border-radius: 4px;
+        border: none;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: #fff;
+    }
+
+    .btn:hover {
+        background-color: #5a6268;
+    }
+</style>
+
+<div class="details-container">
+    <h1>The details of @Model.BookName book</h1>
+    <div class="detail-item">
+        <label asp-for="@Model.BookName" class="textlabel"></label> : <input class="place" value="@Model.BookName" readonly />
+    </div>
+    <div class="detail-item">
+        <label asp-for="@Model.BookPrice" class="textlabel"></label> : <input class="place" value="@Model.BookPrice" readonly />
+    </div>
+    <div class="detail-item">
+        <label asp-for="@Model.BookQuantity" class="textlabel"></label> : <input class="place" value="@Model.BookQuantity" readonly />
+    </div>
+    <div class="detail-item">
+        <label asp-for="@Model.BookCategory" class="textlabel"></label> : <input class="place" value="@Model.BookCategory" readonly />
+    </div>
+    <div class="detail-item">
+        <label asp-for="@Model.BookImage" class="textlabel"></label> : <img class="image" src="~/BooksImages/@Model.BookImage" readonly />
+    </div>
+    <a asp-action="Index" class="btn btn-secondary">Back To Home</a>
+</div>
+
+<script>
+
+</script>

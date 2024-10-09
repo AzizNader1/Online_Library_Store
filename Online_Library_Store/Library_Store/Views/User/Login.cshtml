@@ -1,0 +1,148 @@
+﻿@model LogingUser;
+
+<style>
+    body {
+        background-color: #121212;
+        color: #e0e0e0;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .login {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #263238;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        border-radius: 8px;
+    }
+
+        .login h3 {
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .login form {
+            margin-top: 20px;
+        }
+
+        .login label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .login input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #424242;
+            color: #ffffff;
+        }
+
+        .login .btn-primary {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #009688;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+            .login .btn-primary:hover {
+                background-color: #00796b;
+            }
+
+        .login a.btn-primary {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            background-color: #546e7a;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+            .login a.btn-primary:hover {
+                background-color: #455a64;
+            }
+
+    .text-danger {
+        color: #ff5252;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .alert {
+        margin-top: 10px;
+        padding: 15px;
+        border-radius: 5px;
+        position: relative;
+        animation: fadeIn 0.5s, fadeOut 0.5s 2.5s; /* Optional for fade effect */
+    }
+
+    .alert-success {
+        background-color: #263238;
+        color: #ffffff;
+    }
+
+    .alert-danger {
+        background-color: #f44336; /* Red background for error messages */
+        color: #ffffff;
+    }
+
+    .closebtn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+</style>
+
+<div class="login">
+    <h3>Welcome to our system</h3>
+    <form asp-action="Login" method="post" id="LoginForm">
+        @if (ViewBag.error != "")
+        {
+            <div class="alert alert-danger" role="alert">
+                @ViewBag.error
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            </div>
+        }
+        <div class="form-group">
+            <label asp-for="UserEmail"></label>
+            <input asp-for="UserEmail" class="border-danger" name="UserEmail" id="UserEmail" required />
+            <span asp-validation-for="UserEmail"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="UserPassword"></label>
+            <input type="password" class="border-danger" name="UserPassword" id="UserPassword" required />
+            <span asp-validation-for="UserPassword"></span>
+        </div>
+
+        <input type="submit" id="btnlogin" class="btn btn-primary" value="Login" />
+        <a asp-action="Signup" id="btnsignup" class="btn btn-primary">Signup</a>
+    </form>
+</div>
+
+<script>
+    // Automatically hide alerts after 3 seconds
+    document.querySelectorAll('.alert').forEach(alert => {
+        setTimeout(() => {
+            alert.style.display = 'none';
+        }, 3000);
+    });
+</script>

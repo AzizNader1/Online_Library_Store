@@ -1,0 +1,103 @@
+﻿@model Book;
+
+<style>
+    body {
+        background-color: #121212;
+        color: #e0e0e0;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .form-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #333;
+        border-radius: 8px;
+        background-color: #1f1f1f;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .book-form {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .input-control {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .textlabel {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+
+    .input-place {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #333;
+        border-radius: 4px;
+        background-color: #263238;
+        color: #eceff1;
+    }
+
+    .image {
+        max-width: 100%;
+        height: auto;
+        margin-top: 10px;
+        border-radius: 8px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        margin-top: 10px;
+        cursor: pointer;
+        margin-right: 20px;
+        transition: background-color 0.3s ease-in-out;
+        border-radius: 4px;
+        border: none;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        color: #fff;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    .btn:hover {
+        background-color: #3700b3;
+    }
+</style>
+
+<div class="form-container">
+    <h1>Are you sure about deleting @Model.BookName book?</h1>
+    <form asp-action="DeleteConfirmation" method="post" asp-route-id="@Model.BookId" class="book-form">
+        <input asp-for="@Model.BookId" type="hidden" />
+        <div class="input-control">
+            <label asp-for="@Model.BookName" class="textlabel"></label>
+            <input class="input-place" value="@Model.BookName" readonly />
+        </div>
+        <div class="input-control">
+            <label asp-for="@Model.BookPrice" class="textlabel"></label>
+            <input class="input-place" value="@Model.BookPrice" readonly />
+        </div>
+        <div class="input-control">
+            <label asp-for="@Model.BookQuantity" class="textlabel"></label>
+            <input class="input-place" value="@Model.BookQuantity" readonly />
+        </div>
+        <div class="input-control">
+            <label asp-for="@Model.BookCategory" class="textlabel"></label>
+            <input class="input-place" value="@Model.BookCategory" readonly />
+        </div>
+        <div class="input-control">
+            <label asp-for="@Model.BookImage" class="textlabel"></label>
+            <img class="image" src="~/BooksImages/@Model.BookImage" readonly />
+        </div>
+        <input type="submit" value="Yes, Delete" class="btn btn-danger" />
+        <input type="button" value="No, Cancel" onclick="history.back()" class="btn btn-primary" />
+    </form>
+</div>

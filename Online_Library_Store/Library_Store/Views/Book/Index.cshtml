@@ -1,0 +1,188 @@
+﻿@model IEnumerable<Library_Store.Models.Book>;
+
+<style>
+    body, h1, h2, p {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-color: #121212;
+        color: #e0e0e0;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-top: 20px;
+    }
+
+    .card {
+        width: 23%;
+        margin: 10px;
+        border: 1px solid #333;
+        border-radius: 8px;
+        background-color: #1f1f1f;
+        overflow: hidden;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+        transition: transform 0.3s ease-in-out;
+    }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 20px rgba(187, 134, 252, 0.5);
+        }
+
+    .card-img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .card-title {
+        font-size: 1.2em;
+        margin-bottom: 8px;
+        color: #bb86fc;
+    }
+
+    .card-price {
+        font-weight: bold;
+        color: #ffffff;
+        margin-bottom: 8px;
+    }
+
+    .card-type {
+        color: #cccccc;
+        margin-bottom: 15px;
+    }
+
+    .card-buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn-secondary {
+        padding: 8px 12px;
+        background-color: #3700b3;
+        color: #ffffff;
+        border-radius: 4px;
+        border: none;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+        .btn-secondary:hover {
+            background-color: #bb86fc;
+            color: #121212;
+        }
+
+    .alert {
+        margin-top: 10px;
+        padding: 15px;
+        border-radius: 5px;
+        position: relative;
+        animation: fadeIn 0.5s, fadeOut 0.5s 2.5s; /* Optional for fade effect */
+    }
+
+    .alert-success {
+        background-color: #263238;
+        color: #ffffff;
+    }
+
+    .alert-danger {
+        background-color: #f44336; /* Red background for error messages */
+        color: #ffffff;
+    }
+
+    .closebtn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+</style>
+
+<a asp-action="Add" class="btn btn-secondary">Add a new book</a>
+
+<div id="alert-container">
+    @if (TempData["AddSuccessMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["AddSuccessMessage"]
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+    }
+    @if (TempData["AddErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["AddErrorMessage"]
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+    }
+    @if (TempData["DeleteMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["DeleteMessage"]
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+    }
+    @if (TempData["UpdateMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["UpdateMessage"]
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+    }
+</div>
+
+@if (TempData["ErrorMessage"] == null)
+{
+    <div class="card-container">
+        @foreach (var book in Model)
+        {
+            <div class="card" onclick="RedirectTo(@book.BookId)">
+                <img src="~/BooksImages/@book.BookImage" alt="Book Cover" class="card-img">
+                <div class="card-body">
+                    <h5 class="card-title">@book.BookName</h5>
+                    <p class="card-price">$@book.BookPrice</p>
+                    <p class="card-type">@book.BookCategory</p>
+                    <div class="card-buttons">
+                        <a class="btn btn-secondary" asp-action="ShowDetails" asp-route-id="@book.BookId">Details</a>
+                        <a class="btn btn-secondary" asp-action="Delete" asp-route-id="@book.BookId">Delete</a>
+                        <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@book.BookId">Edit</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["ErrorMessage"]
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    </div>
+}
+
+<script>
+    // Automatically hide alerts after 3 seconds
+    document.querySelectorAll('.alert').forEach(alert => {
+        setTimeout(() => {
+            alert.style.display = 'none';
+        }, 3000);
+    });
+
+    function RedirectTo(BookID) {
+        window.location.href = "@Url.Action("ShowDetails")/" + BookID;
+    }
+</script>

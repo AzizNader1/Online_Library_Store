@@ -1,0 +1,184 @@
+﻿@model AddBookDto;
+
+<style>
+    body {
+        background-color: #121212;
+        color: #e0e0e0;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .form-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #333;
+        border-radius: 8px;
+        background-color: #1f1f1f;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .book-form {
+        display: flex;
+        flex-wrap: wrap;
+        color: #ffffff;
+    }
+
+    .input-control {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .place {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #333;
+        border-radius: 4px;
+        background-color: #263238;
+        color: #eceff1;
+    }
+
+    .error {
+        color: red;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        background-color: #bb86fc;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-right: 20px;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .input-control.error .place {
+        border: 2px solid red;
+    }
+
+    .input-control.success .place {
+        border: 2px solid green;
+    }
+
+    .btn:hover {
+        background-color: #3700b3;
+    }
+</style>
+
+<div class="form-container">
+    <h1>Create a New Book</h1>
+    <form asp-action="Add" name="form1" method="post" enctype="multipart/form-data" class="book-form">
+        <div class="input-control">
+            <label asp-for="@Model.BookName"></label>
+            <input asp-for="@Model.BookName" class="place" />
+            <span asp-validation-for="@Model.BookName" class="error"></span>
+        </div>
+        <div class="input-control">
+            <label asp-for="@Model.BookPrice"></label>
+            <input asp-for="@Model.BookPrice" class="place" />
+            <span asp-validation-for="@Model.BookPrice" class="error"></span>
+        </div>
+        <div class="input-control">
+            <label asp-for="@Model.BookQuantity"></label>
+            <input asp-for="@Model.BookQuantity" class="place" />
+            <span asp-validation-for="@Model.BookQuantity" class="error"></span>
+        </div>
+        <div class="input-control">
+            <label asp-for="@Model.BookCategory"></label>
+            <select asp-for="@Model.BookCategory" id="options" asp-items="@Html.GetEnumSelectList(typeof(Categories))" class="place">
+                <option value="">--select value--</option>
+            </select>
+            <span asp-validation-for="@Model.BookCategory" class="error"></span>
+        </div>
+
+        <div class="input-control">
+            <label>Book Image</label>
+            <input type="file" class="place" id="image" name="image" />
+            <span class="error"></span>
+        </div>
+        <input type="submit" value="Create Book" class="btn btn-secondary" />
+        <input type="button" value="Cancel" onclick="history.back()" class="btn btn-secondary" />
+    </form>
+</div>
+
+<script>
+    const form1 = document.getElementById("form1"),
+        Name = document.getElementById("name"),
+        price = document.getElementById("price"),
+        quantity = document.getElementById("quantity"),
+        types = document.getElementById("options"),
+        author = document.getElementById("author"),
+        image = document.getElementById("image");
+
+    function setError(element, message) {
+        var parent = element.parentNode;
+        var divError = parent.querySelector(".error");
+        divError.innerHTML = message;
+        parent.classList.add("error");
+        parent.classList.remove("success");
+    }
+
+    function setSuccess(element) {
+        var parent = element.parentElement;
+        var divError = parent.querySelector(".error");
+        divError.innerHTML = "";
+        parent.classList.add("success");
+        parent.classList.remove("error");
+    }
+
+    function formValidation() {
+        let bookname = Name.value.trim(),
+            bookprice = price.value.trim(),
+            bookquantity = quantity.value.trim(),
+            booktype = types.value.trim(),
+            bookauthor = author.value.trim(),
+            bookimage = image.value.trim();
+
+        if (bookname == "") {
+            setError(Name, "You should enter book name");
+        }
+        else {
+            setSuccess(Name);
+        }
+
+        if (bookprice == "") {
+            setError(price, "You should enter book price");
+        }
+        else {
+            setSuccess(price);
+        }
+
+        if (bookquantity == "") {
+            setError(quantity, "You should enter book quantity");
+        }
+        else {
+            setSuccess(quantity);
+        }
+
+        if (booktype == "") {
+            setError(types, "You should enter book type");
+        }
+        else {
+            setSuccess(types);
+        }
+
+        if (bookauthor == "") {
+            setError(author, "You should enter book author");
+        }
+        else {
+            setSuccess(author);
+        }
+
+        if (bookimage == "") {
+            setError(image, "You should enter book image");
+        }
+        else {
+            setSuccess(image);
+        }
+    }
+
+    form1.onsubmit = function (event) {
+        event.preventDefault();
+        formValidation();
+    }
+</script>

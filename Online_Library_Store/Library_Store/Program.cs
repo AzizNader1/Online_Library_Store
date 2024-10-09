@@ -1,3 +1,6 @@
+using Library_Store.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace Library_Store
 {
     public class Program
@@ -8,6 +11,10 @@ namespace Library_Store
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<ApplicationDbContext>(
+                options => options.UseSqlServer(
+                    builder.Configuration.GetConnectionString("AssignmentDatabase")));
 
             var app = builder.Build();
 
@@ -28,7 +35,7 @@ namespace Library_Store
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Book}/{action=Index}/{id?}");
 
             app.Run();
         }
